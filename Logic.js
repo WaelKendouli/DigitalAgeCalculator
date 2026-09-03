@@ -58,11 +58,11 @@ const UI = {
       }
 
       function resetOutputs() {
-        outYears.textContent = "—";
-        outMonths.textContent = "—";
-        outDays.textContent = "—";
-        nextBirthdayLine.textContent = "Next birthday: —";
-        extraLine.textContent = "Extra info: —";
+        UI.outYears.textContent = "—";
+        UI.outMonths.textContent = "—";
+        UI.outDays.textContent = "—";
+        UI.nextBirthdayLine.textContent = "Next birthday: —";
+        UI.extraLine.textContent = "Extra info: —";
         setStatus("Waiting…");
       }
 
@@ -180,7 +180,7 @@ const UI = {
         const mm = String(t.getMonth() + 1).padStart(2, "0");
         const dd = String(t.getDate()).padStart(2, "0");
 
-        birthDateInput.value = `${yyyy}-${mm}-${dd}`;
+        UI.birthDateInput.value = `${yyyy}-${mm}-${dd}`;
 
         showMessage(
           "neutral",
