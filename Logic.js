@@ -171,3 +171,34 @@ const UI = {
          showMessage("good", "✅ Age calculated successfully.");
         setStatus("Calculated ✅");
        });
+
+       UI.btnToday.addEventListener("click", () => {
+        const t = new Date();
+
+        // Convert today's date to "YYYY-MM-DD" (required by input[type="date"])
+        const yyyy = t.getFullYear();
+        const mm = String(t.getMonth() + 1).padStart(2, "0");
+        const dd = String(t.getDate()).padStart(2, "0");
+
+        birthDateInput.value = `${yyyy}-${mm}-${dd}`;
+
+        showMessage(
+          "neutral",
+          "📌 Birth date set to today (demo). Now click Calculate."
+        );
+        setStatus("Ready…");
+      });
+
+      UI.btnClear.addEventListener("click", () => {
+        birthDateInput.value = "";
+        resetOutputs();
+        showMessage(
+          "neutral",
+          "Tip: Choose a birth date and press “Calculate Age”."
+        );
+      });
+
+      UI.birthDateInput.addEventListener("change", () => {
+        setStatus("Ready…");
+        showMessage("neutral", "📌 Date selected. Click “Calculate Age”.");
+      });
