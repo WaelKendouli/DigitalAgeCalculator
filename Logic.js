@@ -66,4 +66,31 @@ const UI = {
         setStatus("Waiting…");
       }
 
-      
+      function calculateExactAge(birthDate, today)
+      {
+        let years = today.getFullYear() - birthDate.getFullYear();
+        let months = today.getMonth() - birthDate.getMonth();
+        let days = today.getDate() - birthDate.getDate();
+
+        if (days < 0) {
+            
+            const prevMonthIndex = (today.getMonth() - 1 + 12) % 12;
+
+            const prevYear = (today.getMonth()=== 0)?
+             today.getFullYear() - 1
+             : today.getFullYear();
+             const daysInPrevMonth = daysInMonth(prevYear , prevMonthIndex);
+
+             days += daysInPrevMonth;
+             months--;
+        }
+
+        if(months < 0)
+        {
+            years --;
+            months += 12;
+        }
+
+        return {years , months , days};
+
+      }
