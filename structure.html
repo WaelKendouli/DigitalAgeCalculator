@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Age Calculator — Modern UI</title>
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- ✅ Header (title + today's date chip) -->
+      <header>
+        <div class="title">
+          <h1>📅 Age Calculator</h1>
+          <p>Enter your birth date, then calculate your exact age.</p>
+        </div>
+
+        <!-- ✅ Will be filled by JS on page load -->
+        <div class="chip" id="todayChip">Today: —</div>
+      </header>
+
+      <div class="grid">
+        <!-- ✅ Left Card: Inputs -->
+        <section class="card">
+          <div class="cardHead">
+            <h2>🧾 Inputs</h2>
+            <span class="chip">Modern UI • Vanilla JS</span>
+          </div>
+
+          <div class="cardBody">
+            <!-- ✅ Birth date input -->
+            <label>
+              <div class="labelRow">
+                <span>Birth Date</span>
+                <span>(Required)</span>
+              </div>
+
+              <input id="birthDate" type="date" />
+            </label>
+
+            <!-- ✅ Action buttons -->
+            <div class="btnRow">
+              <button class="primary" id="btnCalc">Calculate Age</button>
+              <button id="btnToday">Use Today (Demo)</button>
+              <button id="btnClear">Clear</button>
+            </div>
+
+            <!-- ✅ Message area (neutral / error / success) -->
+            <div class="msg" id="msgBox">
+              Tip: Choose a birth date and press “Calculate Age”.
+            </div>
+
+            <!-- ✅ Helpful hints for learners -->
+            <div class="hint">
+              🔹 Calculation is based on actual calendar rules (months length,
+              leap years).<br />
+              🔹 “Next Birthday” countdown shows how many days remain.
+            </div>
+          </div>
+        </section>
+
+        <!-- ✅ Right Card: Results -->
+        <section class="card">
+          <div class="cardHead">
+            <h2>📊 Results</h2>
+
+            <!-- ✅ Status chip (Waiting… / Ready… / Calculated ✅) -->
+            <span class="chip" id="statusChip">Waiting…</span>
+          </div>
+
+          <div class="cardBody stats">
+            <!-- ✅ Years / Months / Days blocks -->
+            <div class="statGrid">
+              <div class="stat">
+                <div class="k">Years</div>
+                <div class="v" id="outYears">—</div>
+              </div>
+
+              <div class="stat">
+                <div class="k">Months</div>
+                <div class="v" id="outMonths">—</div>
+              </div>
+
+              <div class="stat">
+                <div class="k">Days</div>
+                <div class="v" id="outDays">—</div>
+              </div>
+            </div>
+
+            <!-- ✅ Extra result lines -->
+            <div class="smallLine" id="nextBirthdayLine">Next birthday: —</div>
+            <div class="smallLine" id="extraLine">Extra info: —</div>
+          </div>
+        </section>
+      </div>
+
+      <div class="footerNote">
+        Built with ❤️ using HTML + CSS + JavaScript (no libraries)
+      </div>
+    </div>
+  </body>
+</html>
