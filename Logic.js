@@ -119,3 +119,55 @@ const UI = {
         
         return { nextBirthdayDate : Next , DaysRemains : diffDays };
       }
+
+      const now = new Date();
+      UI.todayChip.textContent = `Today: ${formatDateForChip(now)}`;
+
+       UI.btnCalc.addEventListener("click", () => {
+        const birthValue = UI.birthDateInput.value ;
+        if (!birthValue) {
+          showMessage("bad", "❌ Please select your birth date first.");
+          resetOutputs();
+          return;
+        }
+
+        const [y, m, d] = birthValue.split("-").map(Number);
+        const birthDate = new Date(y, m - 1, d);
+
+        const today = stripTime(new Date());
+
+        if (stripTime(birthDate) > today) {
+          showMessage("bad", "❌ Birth date cannot be in the future.");
+          resetOutputs();
+          return;
+        }
+
+        if (y < 1900) {
+          showMessage("bad", "❌ Please enter a valid year (1900 or later).");
+          resetOutputs();
+          return;
+        }
+
+        const age = calculateExactAge(birthDate , today);
+
+        UI.outYears.textContent = age.years;
+        UI.outMonths.textContent = age.months;
+        UI.outDays.textContent = age.days;
+
+        const { nextBirthdayDate, daysLeft } = daysUntilNextBirthday(
+          birthDate,
+          today
+        );
+
+        UI.nextBirthdayLine.textContent = `Next birthday: ${formatDateForChip(
+          nextBirthdayDate
+        )} (in ${daysLeft} day${daysLeft === 1 ? "" : "s"})`;
+
+        const msPerDay = 24 * 60 * 60 * 1000;
+        const RestDays = Math.floor((today - stripTime(birthDate)) / msPerDay);
+        
+         UI.extraLine.textContent = `Extra info: You have lived about ${RestDays.toLocaleString()} days.`;
+
+         showMessage("good", "✅ Age calculated successfully.");
+        setStatus("Calculated ✅");
+       });
