@@ -94,3 +94,28 @@ const UI = {
         return {years , months , days};
 
       }
+
+      function daysUntilNextBirthday(today , birthDate)
+      {
+        const currentYear = today.getFullYear();
+        
+        let Next = new Date(
+            currentYear ,
+            birthDate.getMonth(),
+            birthDate.getDate()
+        )
+
+        if (stripTime(Next) < stripTime(today)) {
+            Next = new Date(
+               currentYear + 1 ,
+               birthDate.getMonth(),
+            birthDate.getDate()
+            )
+        }
+
+        const msPerDay = 24 * 60 * 60 * 1000;
+        const diffMs = stripTime(Next) - stripTime(today);
+        const diffDays = Math.round(diffMs / msPerDay);
+        
+        return { nextBirthdayDate : Next , DaysRemains : diffDays };
+      }
